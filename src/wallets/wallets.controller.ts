@@ -5,7 +5,7 @@ import {createWalletsDto} from './dto/createWallets-dto'
 import {getWalletsDto} from './dto/get_wallets-dto'
 import {deleteWallets} from './dto/delete_wallets-dto'
 import {money_wallets} from './dto/money_wallets-dto'
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { createUsersDto } from 'src/users/dto/create-users-dto';
 import { get } from 'http';
 import { query } from 'express';
@@ -14,6 +14,7 @@ export class WalletsController {
     constructor(private walletsService: WalletService)
     {}
 
+    @ApiOperation({ summary: 'get wallets by user email' })
     @ApiTags('Wallets')
     @Get()
     @ApiQuery({ type: getWalletsDto})
@@ -22,7 +23,7 @@ export class WalletsController {
         return this.walletsService.findwallets(query)
     }
 
-
+    @ApiOperation({ summary: 'Create a wallets' })
     @ApiTags('Wallets')
     @Post()
     async createWallets(
@@ -31,7 +32,9 @@ export class WalletsController {
     ){
         return this.walletsService.createWallets(wallets)
     }
+    
 
+    @ApiOperation({ summary: 'delete a wallets' })
     @ApiTags('Wallets')
     @Delete()
     async deleteWallets(@Query() query:deleteWallets
@@ -39,12 +42,15 @@ export class WalletsController {
         return this.walletsService.deleteWallets(query)
     }
 
+
+    @ApiOperation({ summary: 'deposit money to wallet' })
     @ApiTags('Wallets')
     @Patch('deposit')
     async Depositmoney(@Body()query: money_wallets){
         return this.walletsService.deposit(query)
     }
 
+    @ApiOperation({ summary: 'withdraw money from wallet' })
     @ApiTags('Wallets')
     @Patch('withdraw')
     async withdrawmoney(@Body()query: money_wallets){
