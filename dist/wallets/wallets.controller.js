@@ -42,6 +42,7 @@ let WalletsController = class WalletsController {
 };
 exports.WalletsController = WalletsController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'get wallets by user email' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Get)(),
     (0, swagger_1.ApiQuery)({ type: get_wallets_dto_1.getWalletsDto }),
@@ -51,6 +52,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletsController.prototype, "findwallets", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Create a wallets' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -59,6 +61,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletsController.prototype, "createWallets", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'delete a wallets' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Delete)(),
     __param(0, (0, common_1.Query)()),
@@ -67,6 +70,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletsController.prototype, "deleteWallets", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'deposit money to wallet' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Patch)('deposit'),
     __param(0, (0, common_1.Body)()),
@@ -75,6 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], WalletsController.prototype, "Depositmoney", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'withdraw money from wallet' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Patch)('withdraw'),
     __param(0, (0, common_1.Body)()),
