@@ -42,7 +42,7 @@ let WalletsController = class WalletsController {
 };
 exports.WalletsController = WalletsController;
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'get wallets by user email' }),
+    (0, swagger_1.ApiOperation)({ summary: 'get wallets by user ID' }),
     (0, swagger_1.ApiTags)('Wallets'),
     (0, common_1.Get)(),
     (0, swagger_1.ApiQuery)({ type: get_wallets_dto_1.getWalletsDto }),

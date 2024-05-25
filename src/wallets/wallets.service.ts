@@ -19,9 +19,6 @@ export class WalletService {
     ){}
 
     async findwallets(query: Query): Promise<wallets[]> {
-        const keys = Object.keys(query)
-        if (keys.length == 0)
-            return  await this.walletsModel.find();
         return await this.walletsModel.find(query);
     }
 
@@ -37,8 +34,7 @@ export class WalletService {
         const wallet = await this.walletsModel.findOne({email,wallets_name})
         if (!wallet)
             throw new BadRequestException('wallet is not created');
-        wallet.budget = Number(parseInt(deposit_money) + parseInt(wallet.budget.toString()))
-        wallet.left = Number(parseInt(deposit_money) + parseInt(wallet.left.toString()))
+        wallet.amount = Number(parseInt(deposit_money) + parseInt(wallet.amount.toString()))
         const res =  wallet.save()
         const message =  'Success';
         return message
@@ -55,30 +51,25 @@ export class WalletService {
         const wallet = await this.walletsModel.findOne({email,wallets_name})
         if (!wallet)
             throw new BadRequestException('wallet is not created');
-        if(parseInt(withdraw_money) > parseInt(wallet.left.toString()))
+        if(parseInt(withdraw_money) > parseInt(wallet.amount.toString()))
             throw new BadRequestException('not enough money to withdraw')
 
-        wallet.left = Number(parseInt(wallet.left.toString()) - parseInt(withdraw_money))
-        
-        wallet.spend = Number(parseInt(withdraw_money) + parseInt(wallet.spend.toString()))
+        wallet.amount = Number(parseInt(wallet.amount.toString()) - parseInt(withdraw_money))
         const res = await wallet.save()
         const message =  'Success';
         return message
     }
     async createWallets(wallets:createWalletsDto)
     {
-        const {wallets_name} = wallets
-        const { email } = wallets
-        const {budget} = wallets
-        const users = await this.usersModel.findOne({email})
+        const {name} = wallets
+        const { user_ID } = wallets
+        const users = await this.usersModel.findOne({_id:user_ID})
         if (!users)
-            throw new BadRequestException('invalid email');
-        const object = await this.walletsModel.findOne({wallets_name});
+            throw new BadRequestException('invalid user_ID');
+        const object = await this.walletsModel.findOne({name,user_ID});
         if(object)
             throw new BadRequestException('wallets name already existed')
         var res = await this.walletsModel.create(wallets)
-        res.left = Number(budget)
-
         return await res.save()
     }
     async deleteWallets(query:deleteWallets)

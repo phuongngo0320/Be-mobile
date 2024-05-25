@@ -15,19 +15,17 @@ import { ApiProperty } from "@nestjs/swagger";
 export class wallets{
 
     @Prop()
-    wallets_name: String;
+    name: String;
 
     @Prop()
-    budget: Number;
+    user_ID : String
+
+    @Prop()
+    type : String;
 
     @Prop({default: 0})
-    spend : Number;
+    amount: Number;
 
-    @Prop()
-    left: Number;
-
-    @Prop()
-    email: String;
 
 }
 export const walletsSchema = SchemaFactory.createForClass(wallets)

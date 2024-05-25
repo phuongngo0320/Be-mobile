@@ -16,9 +16,8 @@ class getWalletsDto {
 exports.getWalletsDto = getWalletsDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'user email',
-        example: 'Magnus.Wiza@yahoo.com'
+        description: 'user_ID ',
     }),
     __metadata("design:type", String)
-], getWalletsDto.prototype, "email", void 0);
+], getWalletsDto.prototype, "user_ID", void 0);
 //# sourceMappingURL=get_wallets-dto.js.map

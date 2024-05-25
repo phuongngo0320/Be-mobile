@@ -16,22 +16,30 @@ class createWalletsDto {
 exports.createWalletsDto = createWalletsDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: 'vi nuoc hoa'
+        description: 'wallets name ',
+        example: 'vi shopping'
     }),
     __metadata("design:type", String)
-], createWalletsDto.prototype, "wallets_name", void 0);
+], createWalletsDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'ID of user',
+        example: '66237fef97705968270a6dab'
+    }),
+    __metadata("design:type", String)
+], createWalletsDto.prototype, "user_ID", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'type',
+        example: 'shopping'
+    }),
+    __metadata("design:type", String)
+], createWalletsDto.prototype, "type", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'The amount of money ',
         example: '5000'
     }),
     __metadata("design:type", Number)
-], createWalletsDto.prototype, "budget", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        description: 'users email ',
-        example: 'Magnus.Wiza@yahoo.com'
-    }),
-    __metadata("design:type", String)
-], createWalletsDto.prototype, "email", void 0);
+], createWalletsDto.prototype, "amount", void 0);
 //# sourceMappingURL=createWallets-dto.js.map

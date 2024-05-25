@@ -14,7 +14,7 @@ export class WalletsController {
     constructor(private walletsService: WalletService)
     {}
 
-    @ApiOperation({ summary: 'get wallets by user email' })
+    @ApiOperation({ summary: 'get wallets by user ID' })
     @ApiTags('Wallets')
     @Get()
     @ApiQuery({ type: getWalletsDto})

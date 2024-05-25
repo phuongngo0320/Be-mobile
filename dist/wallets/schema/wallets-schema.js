@@ -17,23 +17,19 @@ exports.wallets = wallets;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], wallets.prototype, "wallets_name", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], wallets.prototype, "budget", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 0 }),
-    __metadata("design:type", Number)
-], wallets.prototype, "spend", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], wallets.prototype, "left", void 0);
+], wallets.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], wallets.prototype, "email", void 0);
+], wallets.prototype, "user_ID", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], wallets.prototype, "type", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 0 }),
+    __metadata("design:type", Number)
+], wallets.prototype, "amount", void 0);
 exports.wallets = wallets = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: false,

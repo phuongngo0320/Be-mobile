@@ -2,8 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class getWalletsDto{
 
     @ApiProperty({
-        description: 'user email',
-        example: 'Magnus.Wiza@yahoo.com'
+        description: 'user_ID ',
     })
-    readonly email: string
+    readonly user_ID: string
 }

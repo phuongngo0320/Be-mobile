@@ -24,9 +24,6 @@ let WalletService = class WalletService {
         this.usersModel = usersModel;
     }
     async findwallets(query) {
-        const keys = Object.keys(query);
-        if (keys.length == 0)
-            return await this.walletsModel.find();
         return await this.walletsModel.find(query);
     }
     async deposit(query) {
@@ -40,8 +37,7 @@ let WalletService = class WalletService {
         const wallet = await this.walletsModel.findOne({ email, wallets_name });
         if (!wallet)
             throw new common_1.BadRequestException('wallet is not created');
-        wallet.budget = Number(parseInt(deposit_money) + parseInt(wallet.budget.toString()));
-        wallet.left = Number(parseInt(deposit_money) + parseInt(wallet.left.toString()));
+        wallet.amount = Number(parseInt(deposit_money) + parseInt(wallet.amount.toString()));
         const res = wallet.save();
         const message = 'Success';
         return message;
@@ -57,26 +53,23 @@ let WalletService = class WalletService {
         const wallet = await this.walletsModel.findOne({ email, wallets_name });
         if (!wallet)
             throw new common_1.BadRequestException('wallet is not created');
-        if (parseInt(withdraw_money) > parseInt(wallet.left.toString()))
+        if (parseInt(withdraw_money) > parseInt(wallet.amount.toString()))
             throw new common_1.BadRequestException('not enough money to withdraw');
-        wallet.left = Number(parseInt(wallet.left.toString()) - parseInt(withdraw_money));
-        wallet.spend = Number(parseInt(withdraw_money) + parseInt(wallet.spend.toString()));
+        wallet.amount = Number(parseInt(wallet.amount.toString()) - parseInt(withdraw_money));
         const res = await wallet.save();
         const message = 'Success';
         return message;
     }
     async createWallets(wallets) {
-        const { wallets_name } = wallets;
-        const { email } = wallets;
-        const { budget } = wallets;
-        const users = await this.usersModel.findOne({ email });
+        const { name } = wallets;
+        const { user_ID } = wallets;
+        const users = await this.usersModel.findOne({ _id: user_ID });
         if (!users)
-            throw new common_1.BadRequestException('invalid email');
-        const object = await this.walletsModel.findOne({ wallets_name });
+            throw new common_1.BadRequestException('invalid user_ID');
+        const object = await this.walletsModel.findOne({ name, user_ID });
         if (object)
             throw new common_1.BadRequestException('wallets name already existed');
         var res = await this.walletsModel.create(wallets);
-        res.left = Number(budget);
         return await res.save();
     }
     async deleteWallets(query) {

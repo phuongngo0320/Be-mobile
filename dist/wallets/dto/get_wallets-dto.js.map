@@ -1,1 +1,1 @@
-{"version":3,"file":"get_wallets-dto.js","sourceRoot":"","sources":["../../../src/wallets/dto/get_wallets-dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,aAAa;CAOzB;AAPD,sCAOC;AADY;IAJR,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,YAAY;QACzB,OAAO,EAAE,uBAAuB;KACnC,CAAC;;4CACoB"}
+{"version":3,"file":"get_wallets-dto.js","sourceRoot":"","sources":["../../../src/wallets/dto/get_wallets-dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,aAAa;CAMzB;AAND,sCAMC;AADY;IAHR,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,UAAU;KAC1B,CAAC;;8CACsB"}

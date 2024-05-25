@@ -1,5 +1,6 @@
 export declare class createWalletsDto {
-    readonly wallets_name: string;
-    readonly budget: Number;
-    readonly email: string;
+    readonly name: string;
+    readonly user_ID: String;
+    readonly type: String;
+    readonly amount: Number;
 }

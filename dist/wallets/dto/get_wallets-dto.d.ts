@@ -1,3 +1,3 @@
 export declare class getWalletsDto {
-    readonly email: string;
+    readonly user_ID: string;
 }
