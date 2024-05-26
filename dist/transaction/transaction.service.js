@@ -52,10 +52,10 @@ let TransactionService = class TransactionService {
             amount: transactions.amount,
             is_pay: transactions.is_pay,
             created_at: formattedDate,
+            note_info: transactions.note_info
         };
         if (transactions.is_pay) {
             if (budget) {
-                console.log(1);
                 const t1 = budget.amount;
                 const t2 = transactions.amount;
                 const targetDate = (0, date_fns_1.parse)(formattedDate, 'dd/MM/yyyy', new Date());
@@ -71,6 +71,11 @@ let TransactionService = class TransactionService {
                     await budget.save();
                 }
             }
+            wallets.amount = temp;
+            await wallets.save();
+        }
+        else {
+            const temp = Number(wallets.amount) + Number(transactions.amount);
             wallets.amount = temp;
             await wallets.save();
         }

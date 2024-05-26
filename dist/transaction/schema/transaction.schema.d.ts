@@ -29,6 +29,7 @@ export declare class transactions {
     is_pay: boolean;
     amount: Number;
     created_at: String;
+    note_info: String;
 }
 export declare const transactionsSchema: import("mongoose").Schema<transactions, import("mongoose").Model<transactions, any, any, any, import("mongoose").Document<unknown, any, transactions> & transactions & {
     _id: import("mongoose").Types.ObjectId;

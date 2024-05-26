@@ -3,4 +3,5 @@ export declare class createTransactionDTO {
     readonly category: string;
     readonly amount: Number;
     readonly is_pay: boolean;
+    readonly note_info: string;
 }

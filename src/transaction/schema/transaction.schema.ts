@@ -29,6 +29,9 @@ export class transactions{
     @Prop()
     created_at: String;
 
+    @Prop()
+    note_info: String;
+
 
 }
 export const transactionsSchema = SchemaFactory.createForClass(transactions)

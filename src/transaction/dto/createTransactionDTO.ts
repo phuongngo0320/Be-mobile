@@ -30,5 +30,13 @@ export class createTransactionDTO{
     )
     readonly is_pay: boolean
 
+    @ApiProperty(
+        {
+            description: 'note for transaction ',
+            example: 'this transaction is important AF'
+        }
+    )
+    readonly note_info: string
+
     
 }

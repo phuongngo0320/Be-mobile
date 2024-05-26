@@ -57,6 +57,7 @@ export class TransactionService {
       amount: transactions.amount,
       is_pay: transactions.is_pay,
       created_at: formattedDate,
+      note_info: transactions.note_info
     };
 
     if (transactions.is_pay) {
@@ -82,6 +83,12 @@ export class TransactionService {
         }
       }
 
+
+      wallets.amount = temp;
+      await wallets.save();
+    }
+    else{
+      const temp = Number(wallets.amount) + Number(transactions.amount);
       wallets.amount = temp;
       await wallets.save();
     }

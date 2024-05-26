@@ -41,4 +41,11 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], createTransactionDTO.prototype, "is_pay", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'note for transaction ',
+        example: 'this transaction is important AF'
+    }),
+    __metadata("design:type", String)
+], createTransactionDTO.prototype, "note_info", void 0);
 //# sourceMappingURL=createTransactionDTO.js.map

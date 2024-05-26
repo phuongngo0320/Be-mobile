@@ -34,6 +34,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], transactions.prototype, "created_at", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], transactions.prototype, "note_info", void 0);
 exports.transactions = transactions = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: false,
