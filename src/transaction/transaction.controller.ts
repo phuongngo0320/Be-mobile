@@ -5,7 +5,7 @@ import { Body,Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import {createTransactionDTO} from './dto/createTransactionDTO'
 import {getHistoriesDTO} from './dto/gethistoriesDTO'
-import {getAllistoriesDTO} from './dto/getallhistoriesDTO'
+import {getAllistoriesDTO} from './dto/getAllHistoriesDTO'
 
 @Controller('transaction')
 export class TransactionController {

@@ -19,7 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const common_2 = require("@nestjs/common");
 const createTransactionDTO_1 = require("./dto/createTransactionDTO");
 const gethistoriesDTO_1 = require("./dto/gethistoriesDTO");
-const getallhistoriesDTO_1 = require("./dto/getallhistoriesDTO");
+const getAllHistoriesDTO_1 = require("./dto/getAllHistoriesDTO");
 let TransactionController = class TransactionController {
     constructor(transactionService) {
         this.transactionService = transactionService;
@@ -57,7 +57,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'transaction history by user_ID' }),
     (0, swagger_1.ApiTags)('transactions'),
-    (0, swagger_1.ApiQuery)({ type: getallhistoriesDTO_1.getAllistoriesDTO }),
+    (0, swagger_1.ApiQuery)({ type: getAllHistoriesDTO_1.getAllistoriesDTO }),
     (0, common_2.Get)('histories/all'),
     __param(0, (0, common_2.Query)()),
     __metadata("design:type", Function),
