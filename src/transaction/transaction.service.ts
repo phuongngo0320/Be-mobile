@@ -74,12 +74,8 @@ export class TransactionService {
         );
         const endDate: Date = parse(budget.end_date, 'dd/MM/yyyy', new Date());
         if (isWithinInterval(targetDate, { start: startDate, end: endDate })) {
-          if (t2 >= t1) {
-            budget.amount = 0;
-          } else {
             budget.amount = Number(t1) - Number(t2);
-          }
-          await budget.save();
+            await budget.save();
         }
       }
 
