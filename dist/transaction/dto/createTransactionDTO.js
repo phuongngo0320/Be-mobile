@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'category of budget ',
-        example: 'shopping'
+        example: 'clothes shopping'
     }),
     __metadata("design:type", String)
 ], createTransactionDTO.prototype, "category", void 0);
@@ -37,7 +37,7 @@ __decorate([
 ], createTransactionDTO.prototype, "amount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: '15/6/2023 '
+        example: true
     }),
     __metadata("design:type", Boolean)
 ], createTransactionDTO.prototype, "is_pay", void 0);

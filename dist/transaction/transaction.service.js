@@ -19,6 +19,7 @@ const transaction_schema_1 = require("./schema/transaction.schema");
 const mongoose = require("mongoose");
 const wallets_schema_1 = require("../wallets/schema/wallets-schema");
 const budget_schema_1 = require("../budget/schema/budget.schema");
+const date_fns_1 = require("date-fns");
 let TransactionService = class TransactionService {
     constructor(transactionsModel, walletsModel, budgetModels) {
         this.transactionsModel = transactionsModel;
@@ -29,46 +30,55 @@ let TransactionService = class TransactionService {
         const wallet_id = transactions.wallet_id;
         const wallets = await this.walletsModel.findOne({ _id: wallet_id });
         if (!wallets)
-            throw new common_1.BadRequestException("invalid wallet_id");
+            throw new common_1.BadRequestException('invalid wallet_id');
         const category = transactions.category;
         const budget = await this.budgetModels.findOne({ wallet_id, category });
+        const temp = Number(wallets.amount) - Number(transactions.amount);
+        if (temp < 0)
+            throw new common_1.BadRequestException('not enough money in wallets to make transaction');
         const now = new Date();
-        const formattedDate = now.toLocaleString('en-US', {
+        const date = now
+            .toLocaleString('en-US', {
             day: '2-digit',
             month: '2-digit',
-            year: 'numeric'
-        }).replace(/\//g, '/');
+            year: 'numeric',
+        })
+            .replace(/\//g, '/');
+        const [month, day, year] = date.split('/');
+        const formattedDate = `${day}/${month}/${year}`;
         const object = {
             wallet_id: transactions.wallet_id,
             category: transactions.category,
             amount: transactions.amount,
             is_pay: transactions.is_pay,
-            created_at: formattedDate
+            created_at: formattedDate,
         };
-        if (budget) {
-            const targetDate = new Date(formattedDate);
-            const startDate = new Date(budget.start_date);
-            const endDate = new Date(budget.end_date);
-            if (targetDate >= startDate && targetDate <= endDate) {
+        if (transactions.is_pay) {
+            if (budget) {
+                console.log(1);
                 const t1 = budget.amount;
                 const t2 = transactions.amount;
-                if (t2 >= t1) {
-                    budget.amount = 0;
-                    await budget.save();
-                }
-                else {
-                    budget.amount = Number(t1) - Number(t2);
+                const targetDate = (0, date_fns_1.parse)(formattedDate, 'dd/MM/yyyy', new Date());
+                const startDate = (0, date_fns_1.parse)(budget.start_date, 'dd/MM/yyyy', new Date());
+                const endDate = (0, date_fns_1.parse)(budget.end_date, 'dd/MM/yyyy', new Date());
+                if ((0, date_fns_1.isWithinInterval)(targetDate, { start: startDate, end: endDate })) {
+                    if (t2 >= t1) {
+                        budget.amount = 0;
+                    }
+                    else {
+                        budget.amount = Number(t1) - Number(t2);
+                    }
                     await budget.save();
                 }
             }
+            wallets.amount = temp;
+            await wallets.save();
         }
-        const temp = Number(wallets.amount) - Number(transactions.amount);
-        if (temp < 0)
-            throw new common_1.BadRequestException("not enough money to make transaction");
-        wallets.amount = temp;
-        await wallets.save();
         const res = await this.transactionsModel.create(object);
         return res;
+    }
+    async histories(query) {
+        return await this.transactionsModel.find(query);
     }
 };
 exports.TransactionService = TransactionService;

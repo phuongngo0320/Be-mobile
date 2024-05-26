@@ -34,4 +34,7 @@ export declare class BudgetService {
         _id: mongoose.Types.ObjectId;
     }>;
     delete(query: Query): Promise<mongoose.mongo.DeleteResult>;
+    find(query: Query): Promise<(mongoose.Document<unknown, {}, budget> & budget & {
+        _id: mongoose.Types.ObjectId;
+    })[]>;
 }

@@ -24,14 +24,16 @@ let BudgetService = class BudgetService {
         this.walletsModel = walletsModel;
     }
     async create(budget) {
-        const name = budget.name;
+        const category = budget.category;
         const wallet_id = budget.wallet_id;
-        const object = await this.budgetModels.findOne({ name });
+        const object = await this.budgetModels.findOne({ category });
         if (object)
-            throw new common_1.BadRequestException('name already exists');
+            throw new common_1.BadRequestException('category already exists');
         const wallets = await this.walletsModel.findOne({ _id: wallet_id });
         if (!wallets)
             throw new common_1.BadRequestException('invalid wallets id');
+        if (Number(wallets.amount) < Number(budget.amount))
+            throw new common_1.BadRequestException('not enough money in wallet');
         const res = await this.budgetModels.create(budget);
         return res;
     }
@@ -43,6 +45,9 @@ let BudgetService = class BudgetService {
             return res;
         }
         throw new common_1.BadRequestException("invalid name");
+    }
+    async find(query) {
+        return await this.budgetModels.find(query);
     }
 };
 exports.BudgetService = BudgetService;

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class createBudgetDTO{
     @ApiProperty({
         description: 'The name of Budget',
-        example: 'toys Budget'
+        example: 'cl1235'
     })
     readonly name : string
     @ApiProperty({
@@ -15,7 +15,7 @@ export class createBudgetDTO{
     @ApiProperty(
         {
             description: 'category of budget ',
-            example: 'shopping'
+            example: 'clothes'
         }
     )
     readonly category: string
@@ -30,14 +30,14 @@ export class createBudgetDTO{
 
     @ApiProperty(
         {
-            example: '30/5/2022'
+            example: '20/5/2024'
         }
     )
     readonly start_date: string
 
     @ApiProperty(
         {
-            example: '15/6/2023 '
+            example: '15/6/2024 '
         }
     )
     readonly end_date: string

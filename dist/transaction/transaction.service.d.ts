@@ -24,6 +24,7 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { transactions } from './schema/transaction.schema';
 import * as mongoose from 'mongoose';
+import { Query } from 'express-serve-static-core';
 import { wallets } from '../wallets/schema/wallets-schema';
 import { budget } from '../budget/schema/budget.schema';
 import { createTransactionDTO } from './dto/createTransactionDTO';
@@ -35,4 +36,7 @@ export declare class TransactionService {
     create(transactions: createTransactionDTO): Promise<mongoose.Document<unknown, {}, transactions> & transactions & {
         _id: mongoose.Types.ObjectId;
     }>;
+    histories(query: Query): Promise<(mongoose.Document<unknown, {}, transactions> & transactions & {
+        _id: mongoose.Types.ObjectId;
+    })[]>;
 }

@@ -3,6 +3,8 @@ import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import {createBudgetDTO} from './dto/createBudget'
 import {deleteBudgetDTO} from './dto/deleteBudget'
+import {findBudgetDTO} from './dto/findBudget'
+
 import { Query as ExpressQuery } from 'express-serve-static-core';
 
 
@@ -28,6 +30,15 @@ export class BudgetController {
     async deleteBudget(@Query() query: ExpressQuery
     ){
         return this.budgetService.delete(query)
+    }
+
+    @ApiOperation({ summary: 'find all Budget by wallet id' })
+    @ApiTags('budgets')
+    @Get()
+    @ApiQuery({ type: findBudgetDTO})
+    async find(@Query() query: ExpressQuery
+    ){
+        return this.budgetService.find(query)
     }
 
 }

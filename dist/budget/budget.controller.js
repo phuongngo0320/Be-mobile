@@ -18,6 +18,7 @@ const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const createBudget_1 = require("./dto/createBudget");
 const deleteBudget_1 = require("./dto/deleteBudget");
+const findBudget_1 = require("./dto/findBudget");
 let BudgetController = class BudgetController {
     constructor(budgetService) {
         this.budgetService = budgetService;
@@ -27,6 +28,9 @@ let BudgetController = class BudgetController {
     }
     async deleteBudget(query) {
         return this.budgetService.delete(query);
+    }
+    async find(query) {
+        return this.budgetService.find(query);
     }
 };
 exports.BudgetController = BudgetController;
@@ -49,6 +53,16 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "deleteBudget", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'find all Budget by wallet id' }),
+    (0, swagger_1.ApiTags)('budgets'),
+    (0, common_1.Get)(),
+    (0, swagger_1.ApiQuery)({ type: findBudget_1.findBudgetDTO }),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], BudgetController.prototype, "find", null);
 exports.BudgetController = BudgetController = __decorate([
     (0, common_1.Controller)('budgets'),
     __metadata("design:paramtypes", [budget_service_1.BudgetService])

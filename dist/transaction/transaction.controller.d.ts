@@ -24,6 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { TransactionService } from './transaction.service';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 import { createTransactionDTO } from './dto/createTransactionDTO';
 export declare class TransactionController {
     private transactionService;
@@ -31,4 +32,7 @@ export declare class TransactionController {
     createBudget(transactions: createTransactionDTO): Promise<import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    getHistories(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
 }

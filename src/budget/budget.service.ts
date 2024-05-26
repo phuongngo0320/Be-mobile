@@ -3,7 +3,7 @@ import {budget} from './schema/budget.schema'
 import mongoose from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import {createBudgetDTO} from './dto/createBudget'
-import {deleteBudgetDTO} from './dto/deleteBudget'
+import {findBudgetDTO} from './dto/findBudget'
 import { Query } from 'express-serve-static-core';
 import { wallets} from '../wallets/schema/wallets-schema'
 
@@ -17,14 +17,16 @@ export class BudgetService {
     ){}
 
     async create(budget: budget){
-        const name = budget.name
+        const category = budget.category
         const wallet_id = budget.wallet_id
-        const object = await this.budgetModels.findOne({name})
+        const object = await this.budgetModels.findOne({category})
         if (object)
-            throw new BadRequestException('name already exists')
+            throw new BadRequestException('category already exists')
         const wallets = await this.walletsModel.findOne({_id: wallet_id})
         if (!wallets)
             throw new BadRequestException('invalid wallets id')
+        if (Number(wallets.amount) < Number(budget.amount))
+            throw new BadRequestException('not enough money in wallet')
         const res = await this.budgetModels.create(budget)
         return res
     }
@@ -38,6 +40,10 @@ export class BudgetService {
                 return res
             }   
         throw new BadRequestException("invalid name")
+    }
+
+    async find(query: Query){
+        return await this.budgetModels.find(query)
     }
 
 }

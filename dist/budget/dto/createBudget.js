@@ -17,7 +17,7 @@ exports.createBudgetDTO = createBudgetDTO;
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'The name of Budget',
-        example: 'toys Budget'
+        example: 'cl1235'
     }),
     __metadata("design:type", String)
 ], createBudgetDTO.prototype, "name", void 0);
@@ -31,7 +31,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'category of budget ',
-        example: 'shopping'
+        example: 'clothes'
     }),
     __metadata("design:type", String)
 ], createBudgetDTO.prototype, "category", void 0);
@@ -44,13 +44,13 @@ __decorate([
 ], createBudgetDTO.prototype, "amount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: '30/5/2022'
+        example: '20/5/2024'
     }),
     __metadata("design:type", String)
 ], createBudgetDTO.prototype, "start_date", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: '15/6/2023 '
+        example: '15/6/2024 '
     }),
     __metadata("design:type", String)
 ], createBudgetDTO.prototype, "end_date", void 0);

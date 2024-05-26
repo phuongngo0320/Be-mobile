@@ -10,7 +10,7 @@ export class createTransactionDTO{
     @ApiProperty(
         {
             description: 'category of budget ',
-            example: 'shopping'
+            example: 'clothes shopping'
         }
     )
     readonly category: string
@@ -25,7 +25,7 @@ export class createTransactionDTO{
 
     @ApiProperty(
         {
-            example: '15/6/2023 '
+            example: true
         }
     )
     readonly is_pay: boolean
