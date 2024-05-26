@@ -95,4 +95,30 @@ export class TransactionService {
       return await this.transactionsModel.find(query)
 
   }
-}
+
+  async Allhistories (query : Query){
+    const {user_ID,start_date,end_date} = query
+    const all_wallets =  await this.walletsModel.find({user_ID: user_ID})
+    const promises = all_wallets.map(async (wallets) =>{
+        const object = await this.transactionsModel.find({wallet_id:wallets._id})
+        return object
+        
+    })
+    const results = await Promise.all(promises);
+    const concatenatedValues = [].concat(...results);
+    // const fin = concatenatedValues.map(value => value)
+    const startDate: Date = parse(
+      String(start_date),
+      'dd/MM/yyyy',
+      new Date(),
+    );
+    const endDate: Date = parse(
+      String(end_date),
+      'dd/MM/yyyy',
+      new Date(),
+    );
+    const filteredValues = concatenatedValues.filter((element) =>  isWithinInterval(parse(element.created_at, 'dd/MM/yyyy', new Date()), { start: startDate, end: endDate }) === true);
+    return filteredValues
+  }
+  }
+    

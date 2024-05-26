@@ -27,10 +27,10 @@ export class transactions{
     amount: Number;
 
     @Prop()
-    created_at: String;
+    created_at: string;
 
     @Prop()
-    note_info: String;
+    note_info: string;
 
 
 }

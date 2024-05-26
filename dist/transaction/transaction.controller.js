@@ -19,6 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const common_2 = require("@nestjs/common");
 const createTransactionDTO_1 = require("./dto/createTransactionDTO");
 const gethistoriesDTO_1 = require("./dto/gethistoriesDTO");
+const getallhistoriesDTO_1 = require("./dto/getallhistoriesDTO");
 let TransactionController = class TransactionController {
     constructor(transactionService) {
         this.transactionService = transactionService;
@@ -28,6 +29,9 @@ let TransactionController = class TransactionController {
     }
     async getHistories(query) {
         return this.transactionService.histories(query);
+    }
+    async getAllHistories(query) {
+        return this.transactionService.Allhistories(query);
     }
 };
 exports.TransactionController = TransactionController;
@@ -50,6 +54,16 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], TransactionController.prototype, "getHistories", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'transaction history by user_ID' }),
+    (0, swagger_1.ApiTags)('transactions'),
+    (0, swagger_1.ApiQuery)({ type: getallhistoriesDTO_1.getAllistoriesDTO }),
+    (0, common_2.Get)('histories/all'),
+    __param(0, (0, common_2.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TransactionController.prototype, "getAllHistories", null);
 exports.TransactionController = TransactionController = __decorate([
     (0, common_1.Controller)('transaction'),
     __metadata("design:paramtypes", [transaction_service_1.TransactionService])
