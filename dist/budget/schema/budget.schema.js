@@ -32,6 +32,10 @@ __decorate([
 ], budget.prototype, "amount", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
+    __metadata("design:type", Number)
+], budget.prototype, "initial_amount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], budget.prototype, "start_date", void 0);
 __decorate([

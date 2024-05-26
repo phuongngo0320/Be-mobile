@@ -34,7 +34,16 @@ let BudgetService = class BudgetService {
             throw new common_1.BadRequestException('invalid wallets id');
         if (Number(wallets.amount) < Number(budget.amount))
             throw new common_1.BadRequestException('not enough money in wallet');
-        const res = await this.budgetModels.create(budget);
+        const budget_full = {
+            category: budget.category,
+            name: budget.name,
+            wallet_id: budget.wallet_id,
+            amount: budget.amount,
+            initial_amount: budget.amount,
+            start_date: budget.start_date,
+            end_date: budget.end_date,
+        };
+        const res = await this.budgetModels.create(budget_full);
         return res;
     }
     async delete(query) {

@@ -24,13 +24,14 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { budget } from './schema/budget.schema';
 import mongoose from 'mongoose';
+import { createBudgetDTO } from './dto/createBudget';
 import { Query } from 'express-serve-static-core';
 import { wallets } from '../wallets/schema/wallets-schema';
 export declare class BudgetService {
     private budgetModels;
     private walletsModel;
     constructor(budgetModels: mongoose.Model<budget>, walletsModel: mongoose.Model<wallets>);
-    create(budget: budget): Promise<mongoose.Document<unknown, {}, budget> & budget & {
+    create(budget: createBudgetDTO): Promise<mongoose.Document<unknown, {}, budget> & budget & {
         _id: mongoose.Types.ObjectId;
     }>;
     delete(query: Query): Promise<mongoose.mongo.DeleteResult>;

@@ -62,12 +62,7 @@ let TransactionService = class TransactionService {
                 const startDate = (0, date_fns_1.parse)(budget.start_date, 'dd/MM/yyyy', new Date());
                 const endDate = (0, date_fns_1.parse)(budget.end_date, 'dd/MM/yyyy', new Date());
                 if ((0, date_fns_1.isWithinInterval)(targetDate, { start: startDate, end: endDate })) {
-                    if (t2 >= t1) {
-                        budget.amount = 0;
-                    }
-                    else {
-                        budget.amount = Number(t1) - Number(t2);
-                    }
+                    budget.amount = Number(t1) - Number(t2);
                     await budget.save();
                 }
             }

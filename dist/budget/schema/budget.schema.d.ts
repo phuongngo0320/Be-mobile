@@ -28,6 +28,7 @@ export declare class budget {
     name: String;
     wallet_id: String;
     amount: Number;
+    initial_amount: Number;
     start_date: string;
     end_date: string;
 }

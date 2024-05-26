@@ -16,7 +16,7 @@ export class BudgetService {
         private walletsModel: mongoose.Model<wallets>,
     ){}
 
-    async create(budget: budget){
+    async create(budget: createBudgetDTO){
         const category = budget.category
         const wallet_id = budget.wallet_id
         const object = await this.budgetModels.findOne({category})
@@ -27,7 +27,16 @@ export class BudgetService {
             throw new BadRequestException('invalid wallets id')
         if (Number(wallets.amount) < Number(budget.amount))
             throw new BadRequestException('not enough money in wallet')
-        const res = await this.budgetModels.create(budget)
+        const budget_full: budget = {
+            category: budget.category,
+            name : budget.name,
+            wallet_id : budget.wallet_id,
+            amount: budget.amount,
+            initial_amount : budget.amount,
+            start_date: budget.start_date,
+            end_date: budget.end_date,
+        }
+        const res = await this.budgetModels.create(budget_full)
         return res
     }
 
