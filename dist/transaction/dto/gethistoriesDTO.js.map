@@ -1,1 +1,1 @@
-{"version":3,"file":"gethistoriesDTO.js","sourceRoot":"","sources":["../../../src/transaction/dto/gethistoriesDTO.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,eAAe;CAS3B;AATD,0CASC;AAJY;IAJR,IAAA,qBAAW,EAAC;QAET,WAAW,EAAE,WAAW;KAC3B,CAAC;8BACkB,MAAM;kDAAA"}
+{"version":3,"file":"gethistoriesDTO.js","sourceRoot":"","sources":["../../../src/transaction/dto/gethistoriesDTO.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,eAAe;CAU3B;AAVD,0CAUC;AAJY;IALR,IAAA,qBAAW,EAAC;QAET,WAAW,EAAE,WAAW;KAE3B,CAAC;8BACkB,MAAM;kDAAA"}

@@ -106,6 +106,10 @@ export class TransactionService {
     })
     const results = await Promise.all(promises);
     const concatenatedValues = [].concat(...results);
+    if (start_date == null && end_date == null)
+      {
+        return concatenatedValues
+      }
     // const fin = concatenatedValues.map(value => value)
     const startDate: Date = parse(
       String(start_date),

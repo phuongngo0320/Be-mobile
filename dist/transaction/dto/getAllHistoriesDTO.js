@@ -23,12 +23,14 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'start_date',
+        required: false
     }),
     __metadata("design:type", String)
 ], getAllistoriesDTO.prototype, "start_date", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'end_date',
+        required: false
     }),
     __metadata("design:type", String)
 ], getAllistoriesDTO.prototype, "end_date", void 0);

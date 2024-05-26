@@ -9,12 +9,14 @@ export class getAllistoriesDTO{
     @ApiProperty({
 
         description: 'start_date',
+        required: false
     })
     readonly start_date: string
 
     @ApiProperty({
 
         description: 'end_date',
+        required: false
     })
     readonly end_date: string
  

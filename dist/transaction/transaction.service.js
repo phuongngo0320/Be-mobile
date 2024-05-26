@@ -89,6 +89,9 @@ let TransactionService = class TransactionService {
         });
         const results = await Promise.all(promises);
         const concatenatedValues = [].concat(...results);
+        if (start_date == null && end_date == null) {
+            return concatenatedValues;
+        }
         const startDate = (0, date_fns_1.parse)(String(start_date), 'dd/MM/yyyy', new Date());
         const endDate = (0, date_fns_1.parse)(String(end_date), 'dd/MM/yyyy', new Date());
         const filteredValues = concatenatedValues.filter((element) => (0, date_fns_1.isWithinInterval)((0, date_fns_1.parse)(element.created_at, 'dd/MM/yyyy', new Date()), { start: startDate, end: endDate }) === true);
