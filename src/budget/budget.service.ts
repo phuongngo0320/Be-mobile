@@ -44,11 +44,10 @@ export class BudgetService {
     }
 
     async delete(query: Query){
-        const { name} = query
-        const object = await this.budgetModels.findOne({name})
+        const object = await this.budgetModels.findOne(query)
         if (object)
             {
-                const res = await this.budgetModels.deleteOne({name})
+                const res = await this.budgetModels.deleteOne(query)
                 return res
             }   
         throw new BadRequestException("invalid name")

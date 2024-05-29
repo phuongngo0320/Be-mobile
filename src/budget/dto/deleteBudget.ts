@@ -1,9 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 export class deleteBudgetDTO{
     @ApiProperty({
-        description: 'The name of Budget to delete',
-        example: 'toys Budget'
+        description: 'budget _id'
     })
-    readonly name : string
+    readonly _id : string
     
 }
