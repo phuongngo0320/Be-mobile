@@ -18,6 +18,7 @@ const users_service_1 = require("./users.service");
 const create_users_dto_1 = require("./dto/create-users-dto");
 const change_password_dto_1 = require("./dto/change_password-dto");
 const get_user_dto_1 = require("./dto/get-user-dto");
+const login_dto_1 = require("./dto/login-dto");
 const swagger_1 = require("@nestjs/swagger");
 let UsersController = class UsersController {
     constructor(usersService) {
@@ -34,6 +35,9 @@ let UsersController = class UsersController {
     }
     async deleteUsers(query) {
         return this.usersService.deleteUsers(query);
+    }
+    async login(query) {
+        return await this.usersService.login(query);
     }
 };
 exports.UsersController = UsersController;
@@ -75,6 +79,16 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "deleteUsers", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'login' }),
+    (0, swagger_1.ApiTags)('Users'),
+    (0, common_1.Get)('login'),
+    (0, swagger_1.ApiQuery)({ type: login_dto_1.loginDTO }),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "login", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('Users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

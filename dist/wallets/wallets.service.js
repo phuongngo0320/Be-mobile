@@ -73,16 +73,7 @@ let WalletService = class WalletService {
         return await res.save();
     }
     async deleteWallets(query) {
-        const { email } = query;
-        const users = await this.usersModel.findOne({ email });
-        if (!users)
-            throw new common_1.BadRequestException('invalid email');
-        const object = await this.walletsModel.findOne(query);
-        if (!object)
-            throw new common_1.NotFoundException('wallets name is not existed');
-        await this.walletsModel.findOneAndDelete(query);
-        const message = 'Success';
-        return { message };
+        return await this.walletsModel.findOneAndDelete(query);
     }
     async findById(query) {
         return await this.walletsModel.findOne(query);

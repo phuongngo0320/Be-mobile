@@ -9,15 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteBudgetDTO = void 0;
+exports.loginDTO = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class deleteBudgetDTO {
+class loginDTO {
 }
-exports.deleteBudgetDTO = deleteBudgetDTO;
+exports.loginDTO = loginDTO;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'budget _id'
+        description: 'users email '
     }),
     __metadata("design:type", String)
-], deleteBudgetDTO.prototype, "_id", void 0);
-//# sourceMappingURL=deleteBudget.js.map
+], loginDTO.prototype, "email", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: ' users password'
+    }),
+    __metadata("design:type", String)
+], loginDTO.prototype, "password", void 0);
+//# sourceMappingURL=login-dto.js.map

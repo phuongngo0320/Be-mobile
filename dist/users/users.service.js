@@ -35,6 +35,15 @@ let UsersService = class UsersService {
         const res = await this.usersmodel.create(users);
         return res;
     }
+    async login(query) {
+        const { email, password } = query;
+        const user = await this.usersmodel.findOne({ email });
+        if (!user)
+            throw new common_1.BadRequestException('not found email');
+        if (password != user.password)
+            throw new common_1.BadRequestException("wrong password");
+        return user;
+    }
     async changepassword(change_password) {
         const values = Object.values(change_password);
         const email = values[0];

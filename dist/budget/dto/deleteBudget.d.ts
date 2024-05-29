@@ -1,3 +1,3 @@
 export declare class deleteBudgetDTO {
-    readonly name: string;
+    readonly _id: string;
 }

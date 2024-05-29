@@ -33,14 +33,16 @@ export declare class WalletService {
     private walletsModel;
     private usersModel;
     constructor(walletsModel: mongoose.Model<wallets>, usersModel: mongoose.Model<Users>);
-    findwallets(query: Query): Promise<wallets[]>;
+    findwallets(query: Query): Promise<(mongoose.Document<unknown, {}, wallets> & wallets & {
+        _id: mongoose.Types.ObjectId;
+    })[]>;
     deposit(query: money_wallets): Promise<string>;
     withdraw(query: money_wallets): Promise<string>;
     createWallets(wallets: createWalletsDto): Promise<mongoose.Document<unknown, {}, wallets> & wallets & {
         _id: mongoose.Types.ObjectId;
     }>;
-    deleteWallets(query: deleteWallets): Promise<{
-        message: string;
+    deleteWallets(query: deleteWallets): Promise<mongoose.Document<unknown, {}, wallets> & wallets & {
+        _id: mongoose.Types.ObjectId;
     }>;
     findById(query: Query): Promise<mongoose.Document<unknown, {}, wallets> & wallets & {
         _id: mongoose.Types.ObjectId;

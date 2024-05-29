@@ -1,1 +1,1 @@
-{"version":3,"file":"deleteBudget.js","sourceRoot":"","sources":["../../../src/budget/dto/deleteBudget.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,eAAe;CAO3B;AAPD,0CAOC;AAFY;IAJR,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,8BAA8B;QAC3C,OAAO,EAAE,aAAa;KACzB,CAAC;;6CACoB"}
+{"version":3,"file":"deleteBudget.js","sourceRoot":"","sources":["../../../src/budget/dto/deleteBudget.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,eAAe;CAM3B;AAND,0CAMC;AAFY;IAHR,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,YAAY;KAC5B,CAAC;;4CACmB"}

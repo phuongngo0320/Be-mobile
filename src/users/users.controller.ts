@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { createUsersDto } from './dto/create-users-dto';
 import { change_password } from './dto/change_password-dto';
 import {getUsersDto} from './dto/get-user-dto'
+import {loginDTO} from './dto/login-dto'
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { ApiHeader, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 @Controller('Users')
@@ -46,5 +47,14 @@ export class UsersController {
     async deleteUsers(@Query() query){
         return this.usersService.deleteUsers(query)
     }
+
+    @ApiOperation({ summary: 'login' })
+    @ApiTags('Users')
+    @Get('login')
+    @ApiQuery({ type: loginDTO})
+    async login(@Query() query){
+        return await this.usersService.login(query)     
+    }
+
 }
 

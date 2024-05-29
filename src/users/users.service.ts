@@ -7,6 +7,7 @@ import { Query } from 'express-serve-static-core';
 import { change_password } from './dto/change_password-dto';
 import { createWalletsDto } from 'src/wallets/dto/createWallets-dto';
 import { createUsersDto } from './dto/create-users-dto';
+import {loginDTO} from './dto/login-dto'
 
 @Injectable()
 export class UsersService {
@@ -22,13 +23,23 @@ export class UsersService {
         return await this.usersmodel.find(query);
     }
 
-    async create(users:Users): Promise<Users>{
+    async create(users:Users){
         const email = users.email
         const user = await this.usersmodel.findOne({email});
         if(user)
             throw new BadRequestException('email already exists');
         const res = await this.usersmodel.create(users)
         return res
+    }
+
+    async login (query:loginDTO){
+        const {email,password} = query
+        const user = await this.usersmodel.findOne({email});
+        if(!user)
+            throw new BadRequestException('not found email');
+        if (password != user.password)
+                throw new BadRequestException("wrong password")
+        return user
     }
     
     async changepassword(change_password:change_password): Promise<{message:String}>{

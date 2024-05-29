@@ -16,15 +16,8 @@ class deleteWallets {
 exports.deleteWallets = deleteWallets;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'user email',
-        example: 'Magnus.Wiza@yahoo.com'
+        description: 'wallet id ',
     }),
     __metadata("design:type", String)
-], deleteWallets.prototype, "email", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        example: 'vi nuoc hoa'
-    }),
-    __metadata("design:type", String)
-], deleteWallets.prototype, "wallets_name", void 0);
+], deleteWallets.prototype, "_id", void 0);
 //# sourceMappingURL=delete_wallets-dto.js.map
