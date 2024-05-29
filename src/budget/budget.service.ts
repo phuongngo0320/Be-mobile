@@ -96,7 +96,7 @@ export class BudgetService {
                         new Date(),
                       );
                     const sum = o2.reduce((accumulator, currentObject) => {
-                        if (  isWithinInterval(parse(currentObject.created_at, 'dd/MM/yyyy', new Date()), { start: startDate, end: endDate })) {
+                        if ( isWithinInterval(parse(currentObject.created_at, 'dd/MM/yyyy', new Date()), { start: startDate, end: endDate })) {
                           return accumulator + Number(currentObject.amount);
                         }
                         return Number(accumulator);

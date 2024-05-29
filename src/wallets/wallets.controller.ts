@@ -18,7 +18,7 @@ export class WalletsController {
 
     @ApiOperation({ summary: 'get wallets by user ID' })
     @ApiTags('Wallets')
-    @Get()
+    @Get('byUsersId')
     @ApiQuery({ type: getWalletsDto})
     async findwallets(@Query() query: ExpressQuery
     ){
@@ -62,7 +62,7 @@ export class WalletsController {
     
     @ApiOperation({ summary: 'get wallets by wallet_ID' })
     @ApiTags('Wallets')
-    @Get()
+    @Get('byWalletsId')
     @ApiQuery({ type: getWalletsById})
     async findWalletsById(@Query() query: ExpressQuery
     ){
