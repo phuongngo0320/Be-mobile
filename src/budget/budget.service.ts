@@ -51,7 +51,16 @@ export class BudgetService {
         throw new BadRequestException("invalid name")
     }
 
-    async find(query: Query){
+
+    async findByID(query: Query){
+        return await this.budgetModels.findOne(query)
+    }
+
+    async findInRange(query: Query){
+        return await this.budgetModels.find(query)
+    }
+
+    async updateWallets(query: Query){
         return await this.budgetModels.find(query)
     }
 

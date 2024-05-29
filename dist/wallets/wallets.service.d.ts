@@ -42,4 +42,10 @@ export declare class WalletService {
     deleteWallets(query: deleteWallets): Promise<{
         message: string;
     }>;
+    findById(query: Query): Promise<mongoose.Document<unknown, {}, wallets> & wallets & {
+        _id: mongoose.Types.ObjectId;
+    }>;
+    updateWallets(query: Query): Promise<mongoose.Document<unknown, {}, wallets> & wallets & {
+        _id: mongoose.Types.ObjectId;
+    }>;
 }

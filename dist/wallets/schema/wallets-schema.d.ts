@@ -24,9 +24,9 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 export declare class wallets {
-    name: String;
+    name: string;
     user_ID: String;
-    type: String;
+    type: string;
     amount: Number;
 }
 export declare const walletsSchema: import("mongoose").Schema<wallets, import("mongoose").Model<wallets, any, any, any, import("mongoose").Document<unknown, any, wallets> & wallets & {

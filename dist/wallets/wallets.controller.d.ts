@@ -40,4 +40,10 @@ export declare class WalletsController {
     }>;
     Depositmoney(query: money_wallets): Promise<string>;
     withdrawmoney(query: money_wallets): Promise<string>;
+    findWalletsById(query: ExpressQuery): Promise<import("mongoose").Document<unknown, {}, import("./schema/wallets-schema").wallets> & import("./schema/wallets-schema").wallets & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    updateWallets(query: ExpressQuery): Promise<import("mongoose").Document<unknown, {}, import("./schema/wallets-schema").wallets> & import("./schema/wallets-schema").wallets & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }

@@ -8,7 +8,7 @@ async function bootstrap() {
     app.enableCors();
     const config = new swagger_1.DocumentBuilder()
         .setTitle('N3-API')
-        .setDescription('N3-API for Users and Wallets')
+        .setDescription('N3-API for FinWise applications')
         .setVersion('1.0')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);

@@ -4,6 +4,8 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import {createBudgetDTO} from './dto/createBudget'
 import {deleteBudgetDTO} from './dto/deleteBudget'
 import {findBudgetDTO} from './dto/findBudget'
+import {findByIdDTO} from './dto/findByIdDTO'
+import {findInRangeDTO} from './dto/findInRange'
 
 import { Query as ExpressQuery } from 'express-serve-static-core';
 
@@ -32,13 +34,24 @@ export class BudgetController {
         return this.budgetService.delete(query)
     }
 
-    @ApiOperation({ summary: 'find all Budget by wallet id' })
+
+    @ApiOperation({ summary: 'find Budget by budget_id' })
     @ApiTags('budgets')
-    @Get()
-    @ApiQuery({ type: findBudgetDTO})
-    async find(@Query() query: ExpressQuery
+    @Get('ids')
+    @ApiQuery({ type: findByIdDTO})
+    async findById(@Query() query: ExpressQuery
     ){
-        return this.budgetService.find(query)
+        return this.budgetService.findByID(query)
     }
+
+    @ApiOperation({ summary: 'find all Budget by wallets_id in range' })
+    @ApiTags('budgets')
+    @Get('ranges')
+    @ApiQuery({ type: findInRangeDTO})
+    async findInRange(@Query() query: ExpressQuery
+    ){
+        return this.budgetService.findInRange(query)
+    }
+
 
 }

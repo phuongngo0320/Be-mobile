@@ -33,7 +33,10 @@ export declare class BudgetController {
         _id: import("mongoose").Types.ObjectId;
     }>;
     deleteBudget(query: ExpressQuery): Promise<import("mongodb").DeleteResult>;
-    find(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/budget.schema").budget> & import("./schema/budget.schema").budget & {
+    findById(query: ExpressQuery): Promise<import("mongoose").Document<unknown, {}, import("./schema/budget.schema").budget> & import("./schema/budget.schema").budget & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    findInRange(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/budget.schema").budget> & import("./schema/budget.schema").budget & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
 }

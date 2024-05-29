@@ -15,13 +15,13 @@ import { ApiProperty } from "@nestjs/swagger";
 export class wallets{
 
     @Prop()
-    name: String;
+    name: string;
 
     @Prop()
     user_ID : String
 
     @Prop()
-    type : String;
+    type : string;
 
     @Prop({default: 0})
     amount: Number;

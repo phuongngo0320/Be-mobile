@@ -55,7 +55,13 @@ let BudgetService = class BudgetService {
         }
         throw new common_1.BadRequestException("invalid name");
     }
-    async find(query) {
+    async findByID(query) {
+        return await this.budgetModels.findOne(query);
+    }
+    async findInRange(query) {
+        return await this.budgetModels.find(query);
+    }
+    async updateWallets(query) {
         return await this.budgetModels.find(query);
     }
 };

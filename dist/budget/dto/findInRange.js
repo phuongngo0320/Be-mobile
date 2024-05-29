@@ -9,29 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllistoriesDTO = void 0;
+exports.findInRangeDTO = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class getAllistoriesDTO {
+class findInRangeDTO {
 }
-exports.getAllistoriesDTO = getAllistoriesDTO;
+exports.findInRangeDTO = findInRangeDTO;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'user_ID',
+        description: 'wallet_id',
     }),
     __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "user_ID", void 0);
+], findInRangeDTO.prototype, "wallet_id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'start_date',
         required: false
     }),
     __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "start_date", void 0);
+], findInRangeDTO.prototype, "start_date", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'end_date',
         required: false
     }),
     __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "end_date", void 0);
-//# sourceMappingURL=getAllHistoriesDTO.js.map
+], findInRangeDTO.prototype, "end_date", void 0);
+//# sourceMappingURL=findInRange.js.map

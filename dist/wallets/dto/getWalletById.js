@@ -9,29 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllistoriesDTO = void 0;
+exports.getWalletsById = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class getAllistoriesDTO {
+class getWalletsById {
 }
-exports.getAllistoriesDTO = getAllistoriesDTO;
+exports.getWalletsById = getWalletsById;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'user_ID',
+        description: 'wallets_ID ',
     }),
     __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "user_ID", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        description: 'start_date',
-        required: false
-    }),
-    __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "start_date", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
-        description: 'end_date',
-        required: false
-    }),
-    __metadata("design:type", String)
-], getAllistoriesDTO.prototype, "end_date", void 0);
-//# sourceMappingURL=getAllHistoriesDTO.js.map
+], getWalletsById.prototype, "_id", void 0);
+//# sourceMappingURL=getWalletById.js.map

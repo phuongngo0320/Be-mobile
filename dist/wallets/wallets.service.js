@@ -84,6 +84,13 @@ let WalletService = class WalletService {
         const message = 'Success';
         return { message };
     }
+    async findById(query) {
+        return await this.walletsModel.findOne(query);
+    }
+    async updateWallets(query) {
+        const { _id, ...remaining } = query;
+        return await this.walletsModel.findByIdAndUpdate(_id, remaining);
+    }
 };
 exports.WalletService = WalletService;
 exports.WalletService = WalletService = __decorate([

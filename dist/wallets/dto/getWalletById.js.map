@@ -1,0 +1,1 @@
+{"version":3,"file":"getWalletById.js","sourceRoot":"","sources":["../../../src/wallets/dto/getWalletById.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,cAAc;CAM1B;AAND,wCAMC;AADY;IAHR,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,aAAa;KAC7B,CAAC;;2CACkB"}

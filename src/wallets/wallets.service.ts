@@ -86,6 +86,12 @@ export class WalletService {
         return {message}
     }
 
+    async findById(query: Query) {
+        return await this.walletsModel.findOne(query);
+    }
 
-
+    async updateWallets(query: Query) {
+        const{ _id, ...remaining} = query
+        return await this.walletsModel.findByIdAndUpdate(_id,remaining)
+    }
 }

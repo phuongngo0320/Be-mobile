@@ -28,6 +28,7 @@ export class budget{
 
     @Prop()
     initial_amount : Number;
+    
     @Prop()
     start_date: string;
 
