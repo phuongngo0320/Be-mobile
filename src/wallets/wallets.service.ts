@@ -18,7 +18,7 @@ export class WalletService {
         private usersModel: mongoose.Model<Users>
     ){}
 
-    async findwallets(query: Query): Promise<wallets[]> {
+    async findwallets(query: Query){
         return await this.walletsModel.find(query);
     }
 
