@@ -3,10 +3,9 @@ import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import {createBudgetDTO} from './dto/createBudget'
 import {deleteBudgetDTO} from './dto/deleteBudget'
-import {findBudgetDTO} from './dto/findBudget'
 import {findByIdDTO} from './dto/findByIdDTO'
 import {findInRangeDTO} from './dto/findInRange'
-
+import {updateBudgetDtO} from './dto/updateBudget'
 import { Query as ExpressQuery } from 'express-serve-static-core';
 
 
@@ -51,6 +50,16 @@ export class BudgetController {
     async findInRange(@Query() query: ExpressQuery
     ){
         return this.budgetService.findInRange(query)
+    }
+
+
+    @ApiOperation({ summary: 'update Budget ' })
+    @ApiTags('budgets')
+    @Patch()
+    @ApiQuery({ type: updateBudgetDtO})
+    async Update(@Query() query: ExpressQuery
+    ){
+        return this.budgetService.Update(query)
     }
 
 

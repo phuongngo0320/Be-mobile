@@ -13,12 +13,13 @@ const budget_controller_1 = require("./budget.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const budget_schema_1 = require("./schema/budget.schema");
 const wallets_schema_1 = require("../wallets/schema/wallets-schema");
+const transaction_schema_1 = require("../transaction/schema/transaction.schema");
 let BudgetModule = class BudgetModule {
 };
 exports.BudgetModule = BudgetModule;
 exports.BudgetModule = BudgetModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'budget', schema: budget_schema_1.budgetSchema }, { name: 'wallets', schema: wallets_schema_1.walletsSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'budget', schema: budget_schema_1.budgetSchema }, { name: 'wallets', schema: wallets_schema_1.walletsSchema }, { name: 'transactions', schema: transaction_schema_1.transactionsSchema }])],
         providers: [budget_service_1.BudgetService],
         controllers: [budget_controller_1.BudgetController]
     })

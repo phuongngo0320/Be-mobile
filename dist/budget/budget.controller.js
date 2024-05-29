@@ -20,6 +20,7 @@ const createBudget_1 = require("./dto/createBudget");
 const deleteBudget_1 = require("./dto/deleteBudget");
 const findByIdDTO_1 = require("./dto/findByIdDTO");
 const findInRange_1 = require("./dto/findInRange");
+const updateBudget_1 = require("./dto/updateBudget");
 let BudgetController = class BudgetController {
     constructor(budgetService) {
         this.budgetService = budgetService;
@@ -35,6 +36,9 @@ let BudgetController = class BudgetController {
     }
     async findInRange(query) {
         return this.budgetService.findInRange(query);
+    }
+    async Update(query) {
+        return this.budgetService.Update(query);
     }
 };
 exports.BudgetController = BudgetController;
@@ -77,6 +81,16 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "findInRange", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'update Budget ' }),
+    (0, swagger_1.ApiTags)('budgets'),
+    (0, common_1.Patch)(),
+    (0, swagger_1.ApiQuery)({ type: updateBudget_1.updateBudgetDtO }),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], BudgetController.prototype, "Update", null);
 exports.BudgetController = BudgetController = __decorate([
     (0, common_1.Controller)('budgets'),
     __metadata("design:paramtypes", [budget_service_1.BudgetService])

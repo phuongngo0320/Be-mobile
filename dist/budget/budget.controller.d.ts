@@ -39,4 +39,7 @@ export declare class BudgetController {
     findInRange(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/budget.schema").budget> & import("./schema/budget.schema").budget & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
+    Update(query: ExpressQuery): Promise<import("mongoose").Document<unknown, {}, import("./schema/budget.schema").budget> & import("./schema/budget.schema").budget & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }

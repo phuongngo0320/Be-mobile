@@ -27,10 +27,12 @@ import mongoose from 'mongoose';
 import { createBudgetDTO } from './dto/createBudget';
 import { Query } from 'express-serve-static-core';
 import { wallets } from '../wallets/schema/wallets-schema';
+import { transactions } from '../transaction/schema/transaction.schema';
 export declare class BudgetService {
     private budgetModels;
     private walletsModel;
-    constructor(budgetModels: mongoose.Model<budget>, walletsModel: mongoose.Model<wallets>);
+    private transactionsModel;
+    constructor(budgetModels: mongoose.Model<budget>, walletsModel: mongoose.Model<wallets>, transactionsModel: mongoose.Model<transactions>);
     create(budget: createBudgetDTO): Promise<mongoose.Document<unknown, {}, budget> & budget & {
         _id: mongoose.Types.ObjectId;
     }>;
@@ -41,7 +43,7 @@ export declare class BudgetService {
     findInRange(query: Query): Promise<(mongoose.Document<unknown, {}, budget> & budget & {
         _id: mongoose.Types.ObjectId;
     })[]>;
-    updateWallets(query: Query): Promise<(mongoose.Document<unknown, {}, budget> & budget & {
+    Update(query: Query): Promise<mongoose.Document<unknown, {}, budget> & budget & {
         _id: mongoose.Types.ObjectId;
-    })[]>;
+    }>;
 }
