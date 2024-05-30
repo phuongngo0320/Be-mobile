@@ -33,13 +33,6 @@ export class TransactionService {
     const category = transactions.category;
 
     const budget = await this.budgetModels.findOne({ wallet_id, category });
-
-    const temp = Number(wallets.amount) - Number(transactions.amount);
-    if (temp < 0)
-      throw new BadRequestException(
-        'not enough money in wallets to make transaction',
-      );
-
     const now: Date = new Date();
     const date: string = now
       .toLocaleString('en-US', {
@@ -61,8 +54,14 @@ export class TransactionService {
     };
 
     if (transactions.is_pay) {
+      const temp = Number(wallets.amount) - Number(transactions.amount);
+      if (temp < 0  )
+        throw new BadRequestException(
+          'not enough money in wallets to make transaction',
+        );
+
       if (budget) {
-        // update in both budget + wallet
+        // update in budget
         const t1 = budget.amount;
         const t2 = transactions.amount;
         // const targetDate: Date = new Date(formattedDate);
@@ -79,10 +78,11 @@ export class TransactionService {
         }
       }
 
-
+      //update in wallet
       wallets.amount = temp;
       await wallets.save();
     }
+     // case ispay == false <=> get money
     else{
       const temp = Number(wallets.amount) + Number(transactions.amount);
       wallets.amount = temp;
