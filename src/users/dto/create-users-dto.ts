@@ -18,5 +18,5 @@ export class createUsersDto{
         example: '123456',
         required: false }    
     )
-    readonly password: string
+    password: string
 }

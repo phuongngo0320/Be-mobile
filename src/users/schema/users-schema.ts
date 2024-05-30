@@ -22,5 +22,6 @@ export class Users{
 
     @Prop()
     email: string
+
 }
 export const usersSchema = SchemaFactory.createForClass(Users)
