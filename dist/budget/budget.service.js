@@ -29,12 +29,12 @@ let BudgetService = class BudgetService {
     async create(budget) {
         const category = budget.category;
         const wallet_id = budget.wallet_id;
-        const object = await this.budgetModels.findOne({ category });
-        if (object)
-            throw new common_1.BadRequestException('category already exists');
         const wallets = await this.walletsModel.findOne({ _id: wallet_id });
         if (!wallets)
             throw new common_1.BadRequestException('invalid wallets id');
+        const object = await this.budgetModels.findOne({ category, wallet_id: wallet_id });
+        if (object)
+            throw new common_1.BadRequestException('category already exists');
         if (Number(wallets.amount) < Number(budget.amount))
             throw new common_1.BadRequestException('not enough money in wallet');
         const budget_full = {

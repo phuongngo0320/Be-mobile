@@ -1,8 +1,18 @@
 import { NestFactory } from '@nestjs/core';
+import "./instrument/instrument";
+// Now import other modules
+import * as Sentry from "@sentry/node";
+import {
+  BaseExceptionFilter,
+  HttpAdapterHost,
+} from "@nestjs/core";
 import { AppModule } from './app.module';
+
 import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  Sentry.setupNestErrorHandler(app, new BaseExceptionFilter(httpAdapter));
   app.enableCors()
   const config = new DocumentBuilder()
   .setTitle('N3-API')
