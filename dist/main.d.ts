@@ -1,1 +1,1 @@
-import "./instrument/instrument";
+import "./instrument";
