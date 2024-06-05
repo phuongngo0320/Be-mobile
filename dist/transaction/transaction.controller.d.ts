@@ -32,6 +32,9 @@ export declare class TransactionController {
     createBudget(transactions: createTransactionDTO): Promise<import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    deleteTransaction(query: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     getHistories(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;

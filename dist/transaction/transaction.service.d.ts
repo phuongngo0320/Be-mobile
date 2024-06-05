@@ -28,6 +28,7 @@ import { Query } from 'express-serve-static-core';
 import { wallets } from '../wallets/schema/wallets-schema';
 import { budget } from '../budget/schema/budget.schema';
 import { createTransactionDTO } from './dto/createTransactionDTO';
+import { deleteTransactionDTO } from './dto/deleteTransactionDTO';
 export declare class TransactionService {
     private transactionsModel;
     private walletsModel;
@@ -40,4 +41,7 @@ export declare class TransactionService {
         _id: mongoose.Types.ObjectId;
     })[]>;
     Allhistories(query: Query): Promise<any[]>;
+    delete(transaction: deleteTransactionDTO): Promise<mongoose.Document<unknown, {}, transactions> & transactions & {
+        _id: mongoose.Types.ObjectId;
+    }>;
 }

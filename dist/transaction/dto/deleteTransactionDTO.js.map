@@ -1,0 +1,1 @@
+{"version":3,"file":"deleteTransactionDTO.js","sourceRoot":"","sources":["../../../src/transaction/dto/deleteTransactionDTO.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,MAAa,oBAAoB;CAMhC;AAND,oDAMC;AADY;IAJR,IAAA,qBAAW,EAAC;QAET,WAAW,EAAE,mBAAmB;KACnC,CAAC;8BACY,MAAM;iDAAA"}

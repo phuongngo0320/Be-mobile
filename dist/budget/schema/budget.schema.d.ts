@@ -24,13 +24,13 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 export declare class budget {
-    category: string;
+    category: String;
     name: String;
     wallet_id: String;
     amount: Number;
     initial_amount: Number;
     start_date: string;
-    end_date: string;
+    end_date: String;
 }
 export declare const budgetSchema: import("mongoose").Schema<budget, import("mongoose").Model<budget, any, any, any, import("mongoose").Document<unknown, any, budget> & budget & {
     _id: import("mongoose").Types.ObjectId;

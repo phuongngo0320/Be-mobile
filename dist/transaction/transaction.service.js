@@ -60,7 +60,7 @@ let TransactionService = class TransactionService {
                 const t2 = transactions.amount;
                 const targetDate = (0, date_fns_1.parse)(formattedDate, 'dd/MM/yyyy', new Date());
                 const startDate = (0, date_fns_1.parse)(budget.start_date, 'dd/MM/yyyy', new Date());
-                const endDate = (0, date_fns_1.parse)(budget.end_date, 'dd/MM/yyyy', new Date());
+                const endDate = (0, date_fns_1.parse)(String(budget.end_date), 'dd/MM/yyyy', new Date());
                 if ((0, date_fns_1.isWithinInterval)(targetDate, { start: startDate, end: endDate })) {
                     budget.amount = Number(t1) - Number(t2);
                     await budget.save();
@@ -96,6 +96,33 @@ let TransactionService = class TransactionService {
         const endDate = (0, date_fns_1.parse)(String(end_date), 'dd/MM/yyyy', new Date());
         const filteredValues = concatenatedValues.filter((element) => (0, date_fns_1.isWithinInterval)((0, date_fns_1.parse)(element.created_at, 'dd/MM/yyyy', new Date()), { start: startDate, end: endDate }) === true);
         return filteredValues;
+    }
+    async delete(transaction) {
+        const { _id } = transaction;
+        const object = await this.transactionsModel.findOne({ _id });
+        if (!object)
+            throw new common_1.BadRequestException("invalid transaction_id");
+        const wallet = await this.walletsModel.findOne({ _id: object.wallet_id });
+        const budget = await this.budgetModels.findOne({ wallet_id: object.wallet_id, category: object.category });
+        if (object.is_pay) {
+            if (budget && budget.end_date) {
+                budget.amount = Number(object.amount) + Number(budget.amount);
+                await budget.save();
+            }
+            wallet.amount = Number(object.amount) + Number(wallet.amount);
+        }
+        else {
+            if (budget) {
+                budget.amount = Number(object.amount) - Number(budget.amount);
+                await budget.save();
+            }
+            const temp = Number(object.amount) - Number(wallet.amount);
+            if (temp < 0)
+                throw new common_1.BadRequestException("amount of money in wallet < 0 ");
+            wallet.amount = temp;
+        }
+        await wallet.save();
+        return await this.transactionsModel.findByIdAndDelete(_id);
     }
 };
 exports.TransactionService = TransactionService;

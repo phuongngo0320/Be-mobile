@@ -32,8 +32,18 @@ let BudgetService = class BudgetService {
         const wallets = await this.walletsModel.findOne({ _id: wallet_id });
         if (!wallets)
             throw new common_1.BadRequestException('invalid wallets id');
-        const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
-        const object = await this.budgetModels.find({ category, wallet_id: wallet_id, end_date: { $gt: today } });
+        const today = new Date();
+        const object = await this.budgetModels.find({ category, wallet_id: wallet_id, $expr: {
+                $gt: [
+                    {
+                        $dateFromString: {
+                            dateString: '$end_date',
+                            format: '%d/%m/%Y'
+                        }
+                    },
+                    today
+                ]
+            } });
         if (object.length > 0)
             throw new common_1.BadRequestException('category already exists');
         if (Number(wallets.amount) < Number(budget.amount))

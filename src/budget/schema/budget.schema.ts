@@ -15,7 +15,7 @@ import { ApiProperty } from "@nestjs/swagger";
 export class budget{
 
     @Prop()
-    category: string;
+    category: String;
 
     @Prop()
     name : String
@@ -33,7 +33,7 @@ export class budget{
     start_date: string;
 
     @Prop()
-    end_date: string;
+    end_date: String;
 
 
 }

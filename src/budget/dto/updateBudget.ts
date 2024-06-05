@@ -18,7 +18,7 @@ export class updateBudgetDtO{
     @ApiProperty({
         description: 'category'
     })
-    readonly  category : String;
+    readonly  category : string;
 
     @ApiProperty({
         description: 'start_date'

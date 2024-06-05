@@ -9,49 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBudgetDTO = void 0;
+exports.modifyTransactionDTO = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class createBudgetDTO {
+class modifyTransactionDTO {
 }
-exports.createBudgetDTO = createBudgetDTO;
+exports.modifyTransactionDTO = modifyTransactionDTO;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'The name of Budget',
-        example: 'cl1235'
+        description: 'ID of tranaction',
     }),
     __metadata("design:type", String)
-], createBudgetDTO.prototype, "name", void 0);
+], modifyTransactionDTO.prototype, "_id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'ID of wallet',
-        example: '662373683f8efccec560c2c0'
+        required: false
     }),
     __metadata("design:type", String)
-], createBudgetDTO.prototype, "wallet_id", void 0);
+], modifyTransactionDTO.prototype, "wallet_id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'category of budget',
-        example: 'clothes'
+        description: 'category of budget ',
+        required: false
     }),
     __metadata("design:type", String)
-], createBudgetDTO.prototype, "category", void 0);
+], modifyTransactionDTO.prototype, "category", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'amount of money',
-        example: '25000'
+        description: 'amount of money ',
+        required: false
     }),
     __metadata("design:type", Number)
-], createBudgetDTO.prototype, "amount", void 0);
+], modifyTransactionDTO.prototype, "amount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: '20/5/2024'
+        example: true,
+        required: false
     }),
-    __metadata("design:type", String)
-], createBudgetDTO.prototype, "start_date", void 0);
+    __metadata("design:type", Boolean)
+], modifyTransactionDTO.prototype, "is_pay", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        example: '15/6/2024'
+        description: 'note for transaction ',
+        required: false
     }),
     __metadata("design:type", String)
-], createBudgetDTO.prototype, "end_date", void 0);
-//# sourceMappingURL=createBudget.js.map
+], modifyTransactionDTO.prototype, "note_info", void 0);
+//# sourceMappingURL=modifyTransactionDTO.js.map

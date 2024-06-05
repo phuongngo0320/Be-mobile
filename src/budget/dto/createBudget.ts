@@ -14,7 +14,7 @@ export class createBudgetDTO{
 
     @ApiProperty(
         {
-            description: 'category of budget ',
+            description: 'category of budget',
             example: 'clothes'
         }
     )
@@ -22,7 +22,7 @@ export class createBudgetDTO{
 
     @ApiProperty(
         {
-            description: 'amount of money ',
+            description: 'amount of money',
             example: '25000'
         }
     )
@@ -37,8 +37,8 @@ export class createBudgetDTO{
 
     @ApiProperty(
         {
-            example: '15/6/2024 '
+            example: '15/6/2024'
         }
     )
-    readonly end_date: string
+    readonly end_date: String
 }
