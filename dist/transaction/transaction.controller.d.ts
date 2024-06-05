@@ -26,6 +26,7 @@
 import { TransactionService } from './transaction.service';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { createTransactionDTO } from './dto/createTransactionDTO';
+import { modifyTransactionDTO } from './dto/modifyTransactionDTO';
 export declare class TransactionController {
     private transactionService;
     constructor(transactionService: TransactionService);
@@ -33,6 +34,9 @@ export declare class TransactionController {
         _id: import("mongoose").Types.ObjectId;
     }>;
     deleteTransaction(query: any): Promise<import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    modifyTransaction(transactions: modifyTransactionDTO): Promise<import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     getHistories(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {

@@ -5,13 +5,6 @@ export class modifyTransactionDTO{
         description: 'ID of tranaction',
     })
     readonly _id: String
-    @ApiProperty({
-
-        description: 'ID of wallet',
-        required: false
-    })
-    readonly wallet_id: String
-
     @ApiProperty(
         {
             description: 'category of budget ',
@@ -36,6 +29,13 @@ export class modifyTransactionDTO{
         }
     )
     readonly is_pay: boolean
+
+    @ApiProperty(
+        {
+            required: false
+        }
+    )
+    readonly  created_at: string;
 
     @ApiProperty(
         {

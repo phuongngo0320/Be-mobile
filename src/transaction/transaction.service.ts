@@ -132,10 +132,25 @@
       if(!object)
         throw new BadRequestException("invalid transaction_id")
       const wallet = await this.walletsModel.findOne({_id:object.wallet_id})
-      const budget = await this.budgetModels.findOne({wallet_id:object.wallet_id,category: object.category}) 
+      const budget = await this.budgetModels.findOne({wallet_id:object.wallet_id,category: object.category,$expr: {
+        $gt: [
+          {
+            $dateFromString: {
+              dateString: '$end_date',
+              format: '%d/%m/%Y'
+            }
+          },
+          {
+            $dateFromString: {
+              dateString: object.created_at,
+              format: '%d/%m/%Y'
+            }
+          }
+        ]
+      }}) 
       if(object.is_pay)
         {
-          if(budget && budget.end_date)
+          if(budget)
             {
               budget.amount = Number(object.amount) + Number(budget.amount)
               await budget.save()
@@ -147,29 +162,227 @@
       {
         if(budget)
           {
-            budget.amount = Number(object.amount) - Number(budget.amount)
+            budget.amount = Number(budget.amount) - Number(object.amount) 
             await budget.save()
           }
-        const temp = Number(object.amount) - Number(wallet.amount)
+        const temp = Number(wallet.amount) - Number(object.amount) 
         if(temp < 0 )
-          throw new BadRequestException("amount of money in wallet < 0 ")
+          throw new BadRequestException("amount of money in wallet < 0 after delete")
         wallet.amount = temp
       }
       await wallet.save()
       return await this.transactionsModel.findByIdAndDelete(_id)
     }
 
-    // async modify(transaction:modifyTransactionDTO){
-    //   const{_id,...remain} = transaction
-    //   const{wallet_id,category,amount,is_pay} = remain
-    //   const object = await this.transactionsModel.findOne({_id})
-    //   if(wallet_id != null)
-    //     {
-    //       const wallet = await this.walletsModel.findOne({_id:wallet_id})
-    //     }
-      
-
-    //   }
+    async modify(transaction:modifyTransactionDTO){
+      const{_id,...remain} = transaction
+      const{category,amount,is_pay} = remain
+      const object = await this.transactionsModel.findOne({_id})
+      const wallet = await this.walletsModel.findOne({_id : object.wallet_id})
+      if(!object)
+          throw new BadRequestException("invalid transaction_id")
+      if(category)
+        {
+          if (amount!= null && is_pay != null){
+            let newamount = 0
+            let temp_amount = 0 
+            let temp_money = 0
+            if(!object.is_pay){
+              let temp_money = Number(wallet.amount) - Number(object.amount) - Number(amount)
+              if (temp_money<0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+            }
+            else{
+              let temp_money =  Number(wallet.amount) + Number(object.amount) + Number(amount)
+            }
+            wallet.amount = temp_money
+            await wallet.save()
+            if(object.is_pay){
+              temp_amount = -Number(object.amount)
+              newamount = +Number(amount)
+            }
+            else{
+              temp_amount = +Number(object.amount)
+              newamount = -Number(amount)
+            }
+            const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded 
+            const temp = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:category}) // updated budget
+            if(temp1)
+              {
+                temp1.amount = Number(temp1.amount) - temp_amount
+                await temp1.save()
+              }
+            if(temp)   
+              {
+                temp.amount = Number(temp1.amount) + newamount
+                await temp.save()
+              } 
+          }
+          else if(amount != null && is_pay == null){
+            let newamount = 0
+            let temp_amount = 0 
+            let temp_money = 0
+            if(object.is_pay){
+               temp_money = Number(wallet.amount) - (Number(amount)- Number(object.amount))
+              if (temp_money<0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+            }
+            else{
+               temp_money =  Number(wallet.amount) + ( Number(amount) - Number(object.amount))
+              if (temp_money<0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+            }
+            wallet.amount = temp_money
+            await wallet.save()
+            if(object.is_pay){
+              temp_amount = -Number(object.amount)
+              newamount = -Number(amount)
+            }
+            else{
+              temp_amount = +Number(object.amount)
+              newamount = +Number(amount)
+            }
+            const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded 
+            const temp = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:category}) // updated budget
+            if(temp1)
+              {
+                temp1.amount = Number(temp1.amount) - temp_amount
+                await temp1.save()
+              }
+              if(temp)    
+                {
+                  temp.amount = Number(temp1.amount) + newamount
+                  await temp.save()
+              }
+           } 
+           else if (amount == null && is_pay != null){
+              const oip = object.is_pay
+              let amount = 0
+              let temp_money = 0
+              if(!object.is_pay){
+                temp_money = Number(wallet.amount) - 2*Number(object.amount)
+                if (temp_money<0)
+                  throw new BadGatewayException("amount of money in wallet < 0 after modification")
+              }
+              else{
+                temp_money =  Number(wallet.amount) +2*Number(object.amount)
+              }
+              wallet.amount = temp_money
+              await wallet.save()
+              if(oip){
+                amount = +Number(object.amount)
+              }
+              else{
+                  amount = -Number(object.amount)
+              }
+              const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
+              if(temp1){
+                temp1.amount = Number(temp1.amount) + amount
+                await temp1.save()
+              }
+              const temp = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:category}) // updated budget
+              if(temp){
+                temp.amount = Number(temp.amount) + amount
+                await temp.save()
+              }
+            }
+           else{
+              const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
+              const temp = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:category}) // updated budget
+              let amount = object.amount
+              if (!object.is_pay){
+                amount = -amount
+              }
+              if(temp){
+                temp.amount = Number(temp.amount) + Number(amount)
+                await temp.save()
+              }
+              if(temp1){
+                temp1.amount = Number(temp1.amount) - Number(amount)
+                await temp1.save()
+              }
+            }
+          }
+      else{
+        if (amount != null && is_pay != null){
+          const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
+          let res = Number(amount) 
+         
+              if (is_pay){
+                if(temp1)
+                  {
+                    temp1.amount = Number(temp1.amount) + Number(object.amount) + Number(amount)
+                    await temp1.save()
+                  }
+                wallet.amount = Number(wallet.amount) + Number(object.amount) + Number(amount)
+              }
+              else{
+                if(temp1)
+                  {
+                    temp1.amount = Number(temp1.amount) - Number(object.amount) - Number(amount)
+                    await temp1.save()
+                  }
+                let temp = Number(wallet.amount) - Number(object.amount) - Number(amount)
+                if(temp < 0)
+                  throw new BadGatewayException("amount of money in wallet < 0 after modification")
+                wallet.amount = temp
+                await wallet.save()
+              }
+              
+            
+        }
+        else if(amount != null && is_pay == null){
+          const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
+          let change = Number(object.amount) -  Number(amount) 
+            if (object.is_pay){
+              if(temp1){
+                 temp1.amount = Number(temp1.amount) - change
+                 await temp1.save()
+              }
+              let temp = Number(wallet.amount) - change
+              if(temp < 0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+              wallet.amount = temp
+              await wallet.save()
+            }
+            else{
+              if(temp1){
+                temp1.amount = Number(temp1.amount) + change
+                await temp1.save()
+             }
+              let temp = Number(wallet.amount) + change
+              if(temp < 0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+              wallet.amount = temp
+              await wallet.save()
+            }
+                 
+         } 
+         else if (amount == null && is_pay != null){
+          const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
+          if(!object.is_pay)
+            {
+              let temp = Number(wallet.amount) - 2*Number(object.amount)
+              if(temp < 0)
+                throw new BadGatewayException("amount of money in wallet < 0 after modification")
+              wallet.amount = temp
+              await wallet.save()
+            }
+          if(temp1){
+            if (object.is_pay){
+              temp1.amount = Number(temp1.amount) + 2*Number(object.amount)
+              wallet.amount = Number(wallet.amount) + 2*Number(object.amount)
+              await wallet.save()
+            }
+            else{
+              temp1.amount = Number(temp1.amount) - 2*Number(object.amount)
+            }
+            await temp1.save()
+        }
+      }
     }
+      return await this.transactionsModel.findByIdAndUpdate(_id,remain)
+  }
+}
 
       

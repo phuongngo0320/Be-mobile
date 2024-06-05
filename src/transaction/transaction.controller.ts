@@ -31,15 +31,15 @@ export class TransactionController {
     async deleteTransaction(@Query() query){
         return this.transactionService.delete(query)
     }
-    // @ApiOperation({ summary: 'modify transactions' })
-    // @ApiTags('transactions')
-    // @Patch()
-    // async modifyTransaction(
-    // @Body()
-    // transactions: modifyTransactionDTO
-    // ){
-    //     return this.transactionService.modify(transactions)
-    // }
+    @ApiOperation({ summary: 'modify transactions' })
+    @ApiTags('transactions')
+    @Patch()
+    async modifyTransaction(
+    @Body()
+    transactions: modifyTransactionDTO
+    ){
+        return this.transactionService.modify(transactions)
+    }
 
     @ApiOperation({ summary: 'transaction history by wallet_ID' })
     @ApiTags('transactions')

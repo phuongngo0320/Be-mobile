@@ -22,13 +22,6 @@ __decorate([
 ], modifyTransactionDTO.prototype, "_id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'ID of wallet',
-        required: false
-    }),
-    __metadata("design:type", String)
-], modifyTransactionDTO.prototype, "wallet_id", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({
         description: 'category of budget ',
         required: false
     }),
@@ -48,6 +41,12 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], modifyTransactionDTO.prototype, "is_pay", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        required: false
+    }),
+    __metadata("design:type", String)
+], modifyTransactionDTO.prototype, "created_at", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'note for transaction ',

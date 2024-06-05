@@ -19,6 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const common_2 = require("@nestjs/common");
 const createTransactionDTO_1 = require("./dto/createTransactionDTO");
 const deleteTransactionDTO_1 = require("./dto/deleteTransactionDTO");
+const modifyTransactionDTO_1 = require("./dto/modifyTransactionDTO");
 const gethistoriesDTO_1 = require("./dto/gethistoriesDTO");
 const getAllHistoriesDTO_1 = require("./dto/getAllHistoriesDTO");
 let TransactionController = class TransactionController {
@@ -30,6 +31,9 @@ let TransactionController = class TransactionController {
     }
     async deleteTransaction(query) {
         return this.transactionService.delete(query);
+    }
+    async modifyTransaction(transactions) {
+        return this.transactionService.modify(transactions);
     }
     async getHistories(query) {
         return this.transactionService.histories(query);
@@ -58,6 +62,15 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], TransactionController.prototype, "deleteTransaction", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'modify transactions' }),
+    (0, swagger_1.ApiTags)('transactions'),
+    (0, common_2.Patch)(),
+    __param(0, (0, common_2.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [modifyTransactionDTO_1.modifyTransactionDTO]),
+    __metadata("design:returntype", Promise)
+], TransactionController.prototype, "modifyTransaction", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'transaction history by wallet_ID' }),
     (0, swagger_1.ApiTags)('transactions'),
