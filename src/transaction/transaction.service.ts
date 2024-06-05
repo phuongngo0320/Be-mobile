@@ -181,7 +181,7 @@
       const wallet = await this.walletsModel.findOne({_id : object.wallet_id})
       if(!object)
           throw new BadRequestException("invalid transaction_id")
-      if(category)
+      if(category!= null)
         {
           if (amount!= null && is_pay != null){
             let newamount = 0
@@ -331,7 +331,7 @@
               
             
         }
-        else if(amount != null && is_pay == null){
+        else if(amount != null && is_pay == null){``
           const temp1 = await this.budgetModels.findOne({wallet_id:object.wallet_id,category:object.category}) // olded one
           let change = Number(object.amount) -  Number(amount) 
             if (object.is_pay){
