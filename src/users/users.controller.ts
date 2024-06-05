@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUsersDto } from './dto/create-users-dto';
+import { deleteUsersDto } from './dto/deleteUser-dto';
 import { change_password } from './dto/change_password-dto';
 import {getUsersDto} from './dto/get-user-dto'
 import {loginDTO} from './dto/login-dto'
@@ -43,7 +44,7 @@ export class UsersController {
     @ApiOperation({ summary: 'delete users ' })
     @ApiTags('Users')
     @Delete()
-    @ApiQuery({ type: createUsersDto})
+    @ApiQuery({ type: deleteUsersDto})
     async deleteUsers(@Query() query){
         return this.usersService.deleteUsers(query)
     }

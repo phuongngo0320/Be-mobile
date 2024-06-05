@@ -16,6 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_users_dto_1 = require("./dto/create-users-dto");
+const deleteUser_dto_1 = require("./dto/deleteUser-dto");
 const change_password_dto_1 = require("./dto/change_password-dto");
 const get_user_dto_1 = require("./dto/get-user-dto");
 const login_dto_1 = require("./dto/login-dto");
@@ -73,7 +74,7 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'delete users ' }),
     (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Delete)(),
-    (0, swagger_1.ApiQuery)({ type: create_users_dto_1.createUsersDto }),
+    (0, swagger_1.ApiQuery)({ type: deleteUser_dto_1.deleteUsersDto }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -8,6 +8,8 @@ import { change_password } from './dto/change_password-dto';
 import { createWalletsDto } from 'src/wallets/dto/createWallets-dto';
 import { createUsersDto } from './dto/create-users-dto';
 import {loginDTO} from './dto/login-dto'
+import { deleteUsersDto } from './dto/deleteUser-dto';
+
 import * as bcrypt from 'bcrypt'
 
 @Injectable()
@@ -66,15 +68,12 @@ export class UsersService {
         return {message} ;
     }
 
-    async deleteUsers(query:createUsersDto): Promise<{ message: string}>{
-        const {email} = query
-        const user = await this.usersmodel.findOne({email});
+    async deleteUsers(query:deleteUsersDto){
+        const {_id} = query
+        const user = await this.usersmodel.findOne({_id});
         if (!user) {
-            throw new NotFoundException('invalid email');
+            throw new NotFoundException('invalid user_id');
         }
-        const {password} = query
-        if (password != user.password)
-            throw new BadRequestException('Invalid password');
         await this.usersmodel.deleteOne(query)
         const message =  'Success' ;
         return {message} ;

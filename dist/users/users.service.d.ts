@@ -26,8 +26,8 @@ import * as mongoose from 'mongoose';
 import { Users } from "./schema/users-schema";
 import { Query } from 'express-serve-static-core';
 import { change_password } from './dto/change_password-dto';
-import { createUsersDto } from './dto/create-users-dto';
 import { loginDTO } from './dto/login-dto';
+import { deleteUsersDto } from './dto/deleteUser-dto';
 export declare class UsersService {
     private usersmodel;
     constructor(usersmodel: mongoose.Model<Users>);
@@ -41,7 +41,7 @@ export declare class UsersService {
     changepassword(change_password: change_password): Promise<{
         message: String;
     }>;
-    deleteUsers(query: createUsersDto): Promise<{
+    deleteUsers(query: deleteUsersDto): Promise<{
         message: string;
     }>;
 }

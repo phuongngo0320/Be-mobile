@@ -146,7 +146,7 @@ let TransactionService = class TransactionService {
         const wallet = await this.walletsModel.findOne({ _id: object.wallet_id });
         if (!object)
             throw new common_1.BadRequestException("invalid transaction_id");
-        if (category) {
+        if (category != null) {
             if (amount != null && is_pay != null) {
                 let newamount = 0;
                 let temp_amount = 0;
@@ -287,6 +287,7 @@ let TransactionService = class TransactionService {
                 }
             }
             else if (amount != null && is_pay == null) {
+                ``;
                 const temp1 = await this.budgetModels.findOne({ wallet_id: object.wallet_id, category: object.category });
                 let change = Number(object.amount) - Number(amount);
                 if (object.is_pay) {

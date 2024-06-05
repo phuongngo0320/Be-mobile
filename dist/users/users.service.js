@@ -68,14 +68,11 @@ let UsersService = class UsersService {
         return { message };
     }
     async deleteUsers(query) {
-        const { email } = query;
-        const user = await this.usersmodel.findOne({ email });
+        const { _id } = query;
+        const user = await this.usersmodel.findOne({ _id });
         if (!user) {
-            throw new common_1.NotFoundException('invalid email');
+            throw new common_1.NotFoundException('invalid user_id');
         }
-        const { password } = query;
-        if (password != user.password)
-            throw new common_1.BadRequestException('Invalid password');
         await this.usersmodel.deleteOne(query);
         const message = 'Success';
         return { message };
