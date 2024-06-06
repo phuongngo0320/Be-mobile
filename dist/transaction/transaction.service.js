@@ -83,12 +83,9 @@ let TransactionService = class TransactionService {
     async Allhistories(query) {
         const { user_ID, start_date, end_date } = query;
         const all_wallets = await this.walletsModel.find({ user_ID: user_ID });
-        const promises = all_wallets.map(async (wallets) => {
-            const object = await this.transactionsModel.find({ wallet_id: wallets._id });
-            return object;
-        });
-        const results = await Promise.all(promises);
-        const concatenatedValues = [].concat(...results);
+        const idList = all_wallets.map((wallet) => wallet.id);
+        const concatenatedValues = await this.transactionsModel.find({ wallet_id: { $in: idList } });
+        console.log(concatenatedValues);
         if (start_date == null && end_date == null) {
             return concatenatedValues;
         }

@@ -41,7 +41,9 @@ export declare class TransactionService {
     histories(query: Query): Promise<(mongoose.Document<unknown, {}, transactions> & transactions & {
         _id: mongoose.Types.ObjectId;
     })[]>;
-    Allhistories(query: Query): Promise<any[]>;
+    Allhistories(query: Query): Promise<(mongoose.Document<unknown, {}, transactions> & transactions & {
+        _id: mongoose.Types.ObjectId;
+    })[]>;
     delete(transaction: deleteTransactionDTO): Promise<mongoose.Document<unknown, {}, transactions> & transactions & {
         _id: mongoose.Types.ObjectId;
     }>;

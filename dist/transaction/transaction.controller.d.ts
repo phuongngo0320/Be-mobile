@@ -42,5 +42,7 @@ export declare class TransactionController {
     getHistories(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    getAllHistories(query: ExpressQuery): Promise<any[]>;
+    getAllHistories(query: ExpressQuery): Promise<(import("mongoose").Document<unknown, {}, import("./schema/transaction.schema").transactions> & import("./schema/transaction.schema").transactions & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
 }
