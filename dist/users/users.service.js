@@ -58,12 +58,13 @@ let UsersService = class UsersService {
         if (!user) {
             throw new common_1.NotFoundException('User not found');
         }
-        if (user.password != oldpassword) {
-            throw new common_1.BadRequestException('Invalid old password');
-        }
-        const query = { email: email };
-        const update = { $set: { password: password } };
-        await this.usersmodel.updateOne(query, update);
+        const isMatch = await bcrypt.compare(oldpassword, user.password);
+        if (!isMatch)
+            throw new common_1.BadRequestException("wrong old password");
+        const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(password, salt);
+        user.password = hash;
+        await user.save();
         const message = 'Success';
         return { message };
     }

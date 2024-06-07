@@ -85,7 +85,6 @@ let TransactionService = class TransactionService {
         const all_wallets = await this.walletsModel.find({ user_ID: user_ID });
         const idList = all_wallets.map((wallet) => wallet.id);
         const concatenatedValues = await this.transactionsModel.find({ wallet_id: { $in: idList } });
-        console.log(concatenatedValues);
         if (start_date == null && end_date == null) {
             return concatenatedValues;
         }
